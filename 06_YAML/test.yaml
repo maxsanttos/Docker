@@ -1,0 +1,45 @@
+# Instruções para o programa
+nome: "Max Suel"
+idade: 32 # Esta é a idade do usuário
+
+# Este objeto descreve o nosso projeto
+objeto:
+  versao: 2
+  arquivo: "teste.txt"
+
+# exemplos de dados numericos
+versao: 2
+versao_completa: 3.14
+
+# exemplos de string
+string_sem_aspas: Digite um texto aqui
+texto: "Este tambem e um texto valido para o YAML"
+
+# Exemplo de nulos
+nulo: ~
+nulo_dois: null
+
+# EXEMPLOS BOOLEANO
+verdadeiro: True
+verdadeiro_dois: On
+
+falso: False
+falso_dois: Off
+
+# exemplo de listas
+lista: [1, 2, 3, 4, 5]
+
+lista_dois:
+  - "teste"
+  - 10
+  - outro teste
+  - True
+  - False
+
+obj: {a: 1, b: 2, c: 3, objeto_interno: {a: 1}}
+
+objeto:
+  a: 1
+  b: 2
+  objeto_interno:
+    x: 2
