@@ -32,7 +32,7 @@
 
 * Vamos precisar do client,**kubectl**, que é maneira de executar o Kubernetes;
 
-* E também o **Minikube, uma espécie de simulador de KUbernetes, para não precisarmos de vários computadores/servidores;
+* E também o **Minikube**, uma espécie de simulador de KUbernetes, para não precisarmos de vários computadores/servidores;
 
 ## Instalação Kubernetes no Windows
 
@@ -254,4 +254,121 @@ Events:                   <none>
 
 * Depois o comando:**kubectl set imagem deployment/NOME NOME_CONTAINER=nova_imagem**
 
-##
+## Desfazer alteração
+
+* Para desfazer uma alteração utilizamos uma ação conhecida como rollback;
+
+* O comando para verificar uma alteração é:**kubectl rollout status deployment/NOME**
+
+* Com ele e com o **kubectl get pods**, podemos identificar problemas;
+
+* Para voltar a alteração utilizamos:**kubectl rollout undo deployment/NOME**
+
+## Deletando Services
+
+* Para deletar um serviço do kubernetes vamos utilizar o comando:**kubectl delete service NOME**
+
+* Desta maneira nossos Pods **não terão masi a conexão externa**;
+
+* Ou seja, não poderemos mais acessar eles;
+
+## Deletando Deployments
+
+* Para deletar um Deployment do kubernetes vamos utilizar o comando:
+**kubectl delete deployment NOME**
+
+* Desta maneira **o container não estará mais rodando**, pois paramos os Pods;
+
+* Assim precisaremos criar um deployment novamente com a mesma ou outra imagem, para acessar algum projeto;
+
+## Modo declarativo teoria
+
+* Até agora utilizamos o **modo imperativo**, que é quando iniciamos a aokicação com comandos;
+
+* O **modo declarativo** é guiado por um arquivo, semelhante ao **Docker Compose**;
+
+* Desta maneira tornamos nossas configuração mais simples e **centralizamos tudo em um comando**;
+
+* Também escrevemos em **YAML** o arquivo de Kubernetes;
+
+## Chaves mais utilizadas no modo declarativo
+
+* **apiVersion:** versão utilizada da ferramenta;
+
+* **kind:** tipo do arquivo (Deployment, Service);
+
+* **metadata:** descrever algum onjeto, inserindo chaves como name;
+
+* **replicas:** número de réplicas de Node/Pods;
+
+* **containers:** definir as especificações de containers como: nome e imagem;
+
+## Criando nosso arquivo
+
+* Agora vamos transformar nosso projeto em **declarativo**;
+
+* Para isso vamos criar um arquivo para realizar o **Deployment**;
+
+* Desta maneira vamos aprender a criar os arquivos delrativos e utilizar as **chaves e valores**;
+
+* Mãos à obra!
+
+## Rodando o arquivo do projeto
+
+* Vamos então executar nosso arquivo de **Deployment**!
+
+* O comando é:**kubectl apply -f ARQUIVO**
+
+* Desta maneira o Deployment será criado conforme configurado no arquivo .yaml;
+
+## Parando o deployment
+
+* Para parar de executar este deployment baseado em arquivo, o **declarativo**, utilizamos também o delete;
+
+* O comando é:**kubectl delete -f ARQUIVO**
+
+* Desta maneira teremos os Pods sendo excluídos e o serviço fiinalizado;
+
+## Criando arquivo de service
+
+* Agora vamos criar o serviço em **declarativo**;
+
+* Para isso vamos criar um arquivo para realizar o **Service(kind)**;
+
+* O arquivo será semelhante ao de Deployment, porém tem uma responsabilidade diferente;
+
+## Iniciando o service
+
+* Vamos executar da mesma maneira:**kubectl apply  -f ARQUIVO**
+
+* E o servuço vai estar diponível;
+
+* Obs: precisamos gerar o IP de acesso com **minikube service NOME**
+
+## Parando o serviço
+
+* Para parar de executar um serviço baseado em arquivo, o **declarativo**, utilizamos também o delete;
+
+* O comando é:**kubectl delete -f Arquivo**
+
+* Desta maneira o serviço não estará mais disponível, então perdemos o acesso ao projeto;
+
+## Atualizando o projeto
+
+* Primeiramente vamos **criar uma nova versão da imgem;**
+
+* E fazer o **push para o HUB**;
+
+* Depois é só altrar no arquivo de Deployment a **tag**;
+
+* E reaplicar o comando de **apply**, simples assim =)
+
+## Unindo arquivos
+
+* Vamos precisar unir o deployment e o service em um arquivo;
+
+* A separação de objetos para o YAML é com: **---**
+
+* Desta forma cada um deles será executado;
+
+* Uma boa prática é colocar o **service antes do deployment**!
