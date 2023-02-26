@@ -12,7 +12,7 @@
 
 * Criada pelo **Google**;
 
-## COnceitos Fundamentais
+## Conceitos Fundamentais
 
 * **Control Plane:** Onde é gerenciado o controle dos processos dos Nodes;
 
